@@ -1,0 +1,30 @@
+# Compiled binary
+/autofix
+/autofix.exe
+
+# Build/release output
+/build/
+/dist/
+
+# Test fixtures (generated, not meant to ship)
+/testdata/
+
+# Generated scan output (can land in any tool directory, including demo/*)
+autofix-policy.yaml
+autofix-attestation.json
+autofix-session.json
+autofix-session.patch
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Go
+*.test
+*.out
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

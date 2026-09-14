@@ -1,0 +1,5 @@
+class: demo
+tools:
+  - path: ./research-assistant
+  - path: ./go-fetcher
+    entrypoint: tool.go
