@@ -1,0 +1,84 @@
+# Release automation for Trustabl Probe.
+#
+# Replaces build.sh, which cross-compiled by hand and printed formula and
+# manifest text for someone to copy into the tap repositories. That step was
+# never done after the repository was renamed, so both taps kept pointing at a
+# deleted repository and every install 404'd. goreleaser writes them itself on
+# each tag, so the published manifests cannot drift from the release again.
+version: 2
+
+project_name: autofix
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: autofix
+    main: ./cmd/autofix/
+    binary: autofix
+    env:
+      - CGO_ENABLED=0
+    goos: [linux, darwin, windows]
+    goarch: [amd64, arm64]
+    ignore:
+      # No windows/arm64: Windows on ARM runs the amd64 build under emulation,
+      # and shipping an untested fourth Windows target buys nothing.
+      - { goos: windows, goarch: arm64 }
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w
+      - -X main.version={{ .Version }}
+
+archives:
+  - id: autofix
+    # Matches the names the previous manifests used, so an existing install
+    # path keeps working: autofix_<version>_<os>_<arch>.<ext>
+    name_template: "autofix_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+
+checksum:
+  name_template: "checksums.txt"
+
+# `brews` is deprecated in goreleaser v2; `homebrew_casks` replaces it. A cask
+# declares the binary rather than an install block, and Homebrew handles
+# linking it.
+homebrew_casks:
+  - name: autofix
+    binaries:
+      - autofix
+    # skip_upload: auto means a pre-release tag (anything with a "-", e.g.
+    # v0.2.0-rc.1) does not touch the tap. Final tags do.
+    skip_upload: auto
+    repository:
+      owner: trustabl
+      name: homebrew-autofix
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    homepage: "https://github.com/trustabl/trustabl-probe"
+    description: "Behavioral attestation and AI-powered fixes for agent tools"
+
+scoops:
+  - name: autofix
+    skip_upload: auto
+    repository:
+      owner: trustabl
+      name: scoop-autofix
+      token: "{{ .Env.SCOOP_BUCKET_GITHUB_TOKEN }}"
+    homepage: "https://github.com/trustabl/trustabl-probe"
+    description: "Behavioral attestation and AI-powered fixes for agent tools"
+
+release:
+  prerelease: auto
+
+changelog:
+  use: github
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
