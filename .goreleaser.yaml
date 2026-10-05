@@ -63,6 +63,10 @@ homebrew_casks:
 
 scoops:
   - name: autofix
+    # Scoop reads bucket/ in preference to the repository root. Writing to the
+    # root left the stale bucket/autofix.json in place and installs kept using
+    # it, so the release looked published while every install stayed broken.
+    directory: bucket
     skip_upload: auto
     repository:
       owner: trustabl
