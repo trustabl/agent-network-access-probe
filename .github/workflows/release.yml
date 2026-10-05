@@ -24,6 +24,7 @@ jobs:
     permissions:
       contents: write        # create the release and upload assets
       id-token: write        # OIDC for build provenance
+      attestations: write    # persist the provenance attestation itself
     steps:
       - uses: actions/checkout@v4
         with:
