@@ -1,0 +1,55 @@
+# Builds and publishes Trustabl Probe on a v* tag.
+#
+# goreleaser produces the archives and checksums, creates the GitHub release,
+# and writes the Homebrew formula and Scoop manifest straight into their tap
+# repositories. That last part is the point: both taps previously had to be
+# updated by hand from build.sh output, which never happened after the
+# repository rename, so they pointed at a deleted repository and every install
+# failed at the download step.
+#
+# Runs on ubuntu-latest because the binary is pure Go (CGO_ENABLED=0), so every
+# target cross-compiles from one runner with no toolchain.
+name: release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write        # create the release and upload assets
+      id-token: write        # OIDC for build provenance
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0     # goreleaser needs full history for the changelog
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - run: go test ./...
+
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          version: "~> v2"
+          args: release --clean
+        env:
+          GITHUB_TOKEN:              ${{ secrets.GITHUB_TOKEN }}
+          # A PAT, not GITHUB_TOKEN: the default token cannot write to another
+          # repository, and the taps are separate repositories.
+          HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.TAP_PAT }}
+          SCOOP_BUCKET_GITHUB_TOKEN: ${{ secrets.TAP_PAT }}
+
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            dist/*.tar.gz
+            dist/*.zip
+            dist/checksums.txt
