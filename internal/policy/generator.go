@@ -10,7 +10,7 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"github.com/trustabl/probe/internal/sandbox"
+	"github.com/trustabl/trustabl-probe/internal/sandbox"
 )
 
 var reURLLiteral = regexp.MustCompile(`https?://[^"' \t\n\\]+`)

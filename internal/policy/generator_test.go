@@ -6,7 +6,7 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"github.com/trustabl/probe/internal/sandbox"
+	"github.com/trustabl/trustabl-probe/internal/sandbox"
 )
 
 // TestGenerate_ProtocolIsTCP is a regression test for a schema bug: Generate

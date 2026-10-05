@@ -10,8 +10,8 @@ import (
 	"sort"
 	"time"
 
-	"github.com/trustabl/probe/internal/policy"
-	"github.com/trustabl/probe/internal/sandbox"
+	"github.com/trustabl/trustabl-probe/internal/policy"
+	"github.com/trustabl/trustabl-probe/internal/sandbox"
 )
 
 // Manifest is the behavioral attestation document written to autofix-attestation.json.

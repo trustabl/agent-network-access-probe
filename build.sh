@@ -46,12 +46,12 @@ HASH_MAC_AMD=$(grep darwin_amd64.tar.gz "$DIST/checksums.txt" | awk '{print $1}'
 HASH_MAC_ARM=$(grep darwin_arm64.tar.gz "$DIST/checksums.txt" | awk '{print $1}')
 HASH_WIN=$(grep windows_amd64.zip       "$DIST/checksums.txt" | awk '{print $1}')
 
-BASE_URL="https://github.com/trustabl/probe/releases/download/v${VERSION}"
+BASE_URL="https://github.com/trustabl/trustabl-probe/releases/download/v${VERSION}"
 
 cat > "$DIST/autofix.rb" <<FORMULA
 class Autofix < Formula
   desc "Network egress evidence and least-privilege OpenShell policy for agent tools"
-  homepage "https://github.com/trustabl/probe"
+  homepage "https://github.com/trustabl/trustabl-probe"
   version "${VERSION}"
   license "Apache-2.0"
 
@@ -87,7 +87,7 @@ cat > "$DIST/autofix.json" <<MANIFEST
 {
   "version": "${VERSION}",
   "description": "Network egress evidence and least-privilege OpenShell policy for agent tools",
-  "homepage": "https://github.com/trustabl/probe",
+  "homepage": "https://github.com/trustabl/trustabl-probe",
   "license": "Apache-2.0",
   "architecture": {
     "64bit": {
@@ -97,12 +97,12 @@ cat > "$DIST/autofix.json" <<MANIFEST
   },
   "bin": "autofix.exe",
   "checkver": {
-    "github": "https://github.com/trustabl/probe"
+    "github": "https://github.com/trustabl/trustabl-probe"
   },
   "autoupdate": {
     "architecture": {
       "64bit": {
-        "url": "https://github.com/trustabl/probe/releases/download/v\$version/autofix_\$version_windows_amd64.zip"
+        "url": "https://github.com/trustabl/trustabl-probe/releases/download/v\$version/autofix_\$version_windows_amd64.zip"
       }
     }
   }
@@ -113,4 +113,4 @@ echo "\nDone. Artifacts in ./${DIST}/:"
 ls -lh "$DIST"
 echo "\nNext step:"
 echo "  gh release create v${VERSION} dist/autofix_* dist/checksums.txt \\"
-echo "    --repo trustabl/probe --title \"autofix v${VERSION}\" --notes \"Initial release\""
+echo "    --repo trustabl/trustabl-probe --title \"autofix v${VERSION}\" --notes \"Initial release\""

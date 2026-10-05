@@ -72,8 +72,8 @@ scoop install autofix
 
 **Linux / manual:**
 ```bash
-# Replace v0.1.0 with the latest version from https://github.com/trustabl/probe/releases
-curl -L https://github.com/trustabl/probe/releases/download/v0.1.0/autofix_0.1.0_linux_amd64.tar.gz | tar xz
+# Replace v0.1.0 with the latest version from https://github.com/trustabl/trustabl-probe/releases
+curl -L https://github.com/trustabl/trustabl-probe/releases/download/v0.1.0/autofix_0.1.0_linux_amd64.tar.gz | tar xz
 sudo mv autofix /usr/local/bin/
 autofix version
 ```
