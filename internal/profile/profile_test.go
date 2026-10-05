@@ -3,8 +3,8 @@ package profile
 import (
 	"testing"
 
-	"github.com/trustabl/probe/internal/policy"
-	"github.com/trustabl/probe/internal/sandbox"
+	"github.com/trustabl/trustabl-probe/internal/policy"
+	"github.com/trustabl/trustabl-probe/internal/sandbox"
 )
 
 // TestBuild_PerToolEgressTable models an NVIDIA-shaped example close to

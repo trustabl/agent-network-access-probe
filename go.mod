@@ -1,4 +1,4 @@
-module github.com/trustabl/probe
+module github.com/trustabl/trustabl-probe
 
 go 1.25.0
 

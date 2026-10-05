@@ -10,8 +10,8 @@ import (
 	"strings"
 
 	"github.com/pmezard/go-difflib/difflib"
-	"github.com/trustabl/probe/internal/llm"
-	"github.com/trustabl/probe/internal/sandbox"
+	"github.com/trustabl/trustabl-probe/internal/llm"
+	"github.com/trustabl/trustabl-probe/internal/sandbox"
 )
 
 type Result struct {
