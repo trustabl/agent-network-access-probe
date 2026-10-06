@@ -23,7 +23,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-Full text: https://github.com/trustabl/trustabl-probe/blob/main/LICENSE`
+Full text: https://github.com/trustabl/agent-network-access-probe/blob/main/LICENSE`
 
 var licenseCmd = &cobra.Command{
 	Use:   "license",
@@ -50,7 +50,7 @@ func showLicenseBannerOnce(subcmd string) {
 	}
 	fmt.Fprintln(os.Stderr, "────────────────────────────────────────────────────────")
 	fmt.Fprintln(os.Stderr, "  Trustabl Probe (autofix)  ·  Apache-2.0")
-	fmt.Fprintln(os.Stderr, "  github.com/trustabl/trustabl-probe")
+	fmt.Fprintln(os.Stderr, "  github.com/trustabl/agent-network-access-probe")
 	fmt.Fprintln(os.Stderr, "  Run `autofix license` for license and copyright info")
 	fmt.Fprintln(os.Stderr, "────────────────────────────────────────────────────────")
 	_ = os.MkdirAll(filepath.Dir(marker), 0o755)

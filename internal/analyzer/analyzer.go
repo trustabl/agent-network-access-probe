@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/trustabl/trustabl-probe/internal/sandbox"
+	"github.com/trustabl/agent-network-access-probe/internal/sandbox"
 )
 
 // stdlibModules is a curated set of Python 3 standard-library top-level names.

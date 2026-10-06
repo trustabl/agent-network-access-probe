@@ -1,4 +1,4 @@
-module github.com/trustabl/trustabl-probe
+module github.com/trustabl/agent-network-access-probe
 
 go 1.25.0
 

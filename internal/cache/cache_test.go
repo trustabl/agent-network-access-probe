@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/trustabl/trustabl-probe/internal/sandbox"
+	"github.com/trustabl/agent-network-access-probe/internal/sandbox"
 )
 
 func sampleKeyInput() KeyInput {

@@ -58,7 +58,7 @@ homebrew_casks:
       owner: trustabl
       name: homebrew-autofix
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
-    homepage: "https://github.com/trustabl/trustabl-probe"
+    homepage: "https://github.com/trustabl/agent-network-access-probe"
     description: "Behavioral attestation and AI-powered fixes for agent tools"
 
 scoops:
@@ -72,7 +72,7 @@ scoops:
       owner: trustabl
       name: scoop-autofix
       token: "{{ .Env.SCOOP_BUCKET_GITHUB_TOKEN }}"
-    homepage: "https://github.com/trustabl/trustabl-probe"
+    homepage: "https://github.com/trustabl/agent-network-access-probe"
     description: "Behavioral attestation and AI-powered fixes for agent tools"
 
 release:

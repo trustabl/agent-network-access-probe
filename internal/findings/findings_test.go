@@ -3,8 +3,8 @@ package findings
 import (
 	"testing"
 
-	"github.com/trustabl/trustabl-probe/internal/profile"
-	"github.com/trustabl/trustabl-probe/internal/sandbox"
+	"github.com/trustabl/agent-network-access-probe/internal/profile"
+	"github.com/trustabl/agent-network-access-probe/internal/sandbox"
 )
 
 // TestBuild_PerFileAttribution confirms each tool's own candidates are

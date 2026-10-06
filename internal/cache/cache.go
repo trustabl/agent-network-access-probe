@@ -15,7 +15,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/trustabl/trustabl-probe/internal/sandbox"
+	"github.com/trustabl/agent-network-access-probe/internal/sandbox"
 )
 
 // RulesVersion is bumped by hand whenever analyzer rule behavior changes in

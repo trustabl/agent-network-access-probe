@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/trustabl/trustabl-probe/internal/attestation"
+	"github.com/trustabl/agent-network-access-probe/internal/attestation"
 )
 
 type verifyResult struct {
