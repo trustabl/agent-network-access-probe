@@ -47,7 +47,7 @@ jobs:
 
       - name: Download autofix
         run: |
-          curl -L https://github.com/trustabl/trustabl-probe/releases/latest/download/autofix_linux_amd64.tar.gz | tar xz
+          curl -L https://github.com/trustabl/agent-network-access-probe/releases/latest/download/autofix_linux_amd64.tar.gz | tar xz
           chmod +x autofix
 
       - name: Scan and attest

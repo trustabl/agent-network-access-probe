@@ -11,8 +11,8 @@ import (
 	"sort"
 	"time"
 
-	"github.com/trustabl/trustabl-probe/internal/policy"
-	"github.com/trustabl/trustabl-probe/internal/sandbox"
+	"github.com/trustabl/agent-network-access-probe/internal/policy"
+	"github.com/trustabl/agent-network-access-probe/internal/sandbox"
 )
 
 // ToolInput is one tool's scan results, scoped to that tool alone — the

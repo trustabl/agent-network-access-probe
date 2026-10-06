@@ -12,8 +12,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/trustabl/trustabl-probe/internal/profile"
-	"github.com/trustabl/trustabl-probe/internal/sandbox"
+	"github.com/trustabl/agent-network-access-probe/internal/profile"
+	"github.com/trustabl/agent-network-access-probe/internal/sandbox"
 )
 
 // Finding is one candidate, attributed to the file it came from where
