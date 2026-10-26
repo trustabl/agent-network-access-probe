@@ -1,0 +1,11 @@
+{
+  "name": "trustabl-agent-network-access-probe",
+  "version": "0.4.0",
+  "description": "Drafts a network allow list for agent tools and runs them in a network-blocked sandbox to catch runtime problems. Your agent applies the fix hints, so no model key is needed. Docker is optional and enables the sandbox.",
+  "homepage": "https://github.com/trustabl/agent-network-access-probe/tree/main/mcp",
+  "repository": "https://github.com/trustabl/agent-network-access-probe",
+  "author": { "name": "Trustabl", "url": "https://trustabl.ai" },
+  "license": "Apache-2.0",
+  "keywords": ["mcp", "security", "agents", "sandbox", "network-policy", "openshell", "least-privilege"],
+  "mcpServers": "./.mcp.json"
+}
