@@ -1,5 +1,5 @@
 {
-  "name": "trustabl-probe-mcp-server",
+  "name": "trustabl-agent-network-access-probe-server",
   "version": "0.1.0",
   "private": true,
   "description": "Source of the Trustabl Probe MCP server; bundled to ../dist/index.js",

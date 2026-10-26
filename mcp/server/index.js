@@ -86,7 +86,7 @@ function stepsList(steps) {
 
 // ---------------------------------------------------------------------------
 
-const server = new McpServer({ name: "trustabl-probe", version: releaseVersion()?.slice(1) ?? "dev" });
+const server = new McpServer({ name: "trustabl-agent-network-access-probe", version: releaseVersion()?.slice(1) ?? "dev" });
 
 server.registerTool(
   "probe_check_setup",

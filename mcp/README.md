@@ -33,18 +33,19 @@ Python and Node. Shell scripts are always analyzed statically only.
 
 Requires Node.js 18 or later. Docker is optional and enables the sandbox.
 
-The server ships with every [Probe release](https://github.com/trustabl/agent-network-access-probe/releases)
-as `trustabl-probe-mcp-<version>.tgz`. The examples use v0.2.4; use the latest
-release.
+The server is the npm package `trustabl-agent-network-access-probe`, and every
+[Probe release](https://github.com/trustabl/agent-network-access-probe/releases)
+also attaches it as `trustabl-agent-network-access-probe-<version>.tgz` and
+`.mcpb`.
 
 **Cursor** (`.cursor/mcp.json`):
 
 ```json
 {
   "mcpServers": {
-    "trustabl-probe": {
+    "trustabl-agent-network-access-probe": {
       "command": "npx",
-      "args": ["-y", "https://github.com/trustabl/agent-network-access-probe/releases/download/v0.2.4/trustabl-probe-mcp-0.2.4.tgz"]
+      "args": ["-y", "trustabl-agent-network-access-probe"]
     }
   }
 }
@@ -53,12 +54,15 @@ release.
 **Claude Code:**
 
 ```bash
-claude mcp add trustabl-probe -- npx -y https://github.com/trustabl/agent-network-access-probe/releases/download/v0.2.4/trustabl-probe-mcp-0.2.4.tgz
+claude mcp add trustabl-agent-network-access-probe -- npx -y trustabl-agent-network-access-probe
 ```
 
-**Claude Desktop:** download `trustabl-probe-mcp-<version>.mcpb` from the release
-and open it to install. Or use the same `command` and `args` as the Cursor example
-under `mcpServers` in `claude_desktop_config.json`.
+**Claude Desktop:** download `trustabl-agent-network-access-probe-<version>.mcpb`
+from the release and open it to install. Or use the same `command` and `args` as
+the Cursor example under `mcpServers` in `claude_desktop_config.json`.
+
+To pin one release instead of following the latest, replace the package name in
+`args` with that release's `.tgz` URL.
 
 Then ask your agent to run `probe_check_setup`.
 
