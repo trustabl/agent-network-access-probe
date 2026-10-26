@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.trustabl/agent-network-access-probe",
+  "title": "Trustabl Probe",
+  "description": "Drafts a network allow list for agent tools and runs them in a network-blocked sandbox.",
+  "version": "0.0.0",
+  "websiteUrl": "https://trustabl.ai",
+  "repository": {
+    "url": "https://github.com/trustabl/agent-network-access-probe",
+    "source": "github",
+    "subfolder": "mcp"
+  },
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/trustabl/agent-network-access-probe/releases/download/v0.0.0/trustabl-probe-mcp-0.0.0.mcpb",
+      "version": "0.0.0",
+      "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

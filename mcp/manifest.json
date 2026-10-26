@@ -1,0 +1,52 @@
+{
+  "manifest_version": "0.3",
+  "name": "trustabl-probe",
+  "display_name": "Trustabl Probe",
+  "version": "0.0.0",
+  "description": "Drafts a network allow list for an agent tool and runs it in a network-blocked sandbox to catch runtime problems.",
+  "long_description": "Trustabl Probe drafts a least-privilege OpenShell network allow list from an agent tool's code and can run the tool in a sandbox with its network blocked, catching crashes, missing dependencies and blocked connection attempts that only show up at runtime. Every finding comes with a fix hint for your agent to apply, so no model or API key is needed. Docker is optional and enables the sandbox; the server checks what is missing and never installs system software itself.",
+  "author": {
+    "name": "Trustabl",
+    "url": "https://trustabl.ai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trustabl/agent-network-access-probe"
+  },
+  "homepage": "https://trustabl.ai",
+  "documentation": "https://github.com/trustabl/agent-network-access-probe/tree/main/mcp",
+  "support": "https://github.com/trustabl/agent-network-access-probe/issues",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"],
+      "env": {}
+    }
+  },
+  "tools": [
+    {
+      "name": "probe_check_setup",
+      "description": "Read-only report of what Probe needs on this machine, with the exact command to fix each missing piece."
+    },
+    {
+      "name": "probe_install",
+      "description": "Downloads the Probe binary (checksum-verified) and pulls the sandbox images; returns commands for system software instead of running them."
+    },
+    {
+      "name": "probe_scan",
+      "description": "Scans an agent tool: readiness score, draft network allow list, and findings with fix hints."
+    }
+  ],
+  "keywords": ["mcp", "security", "agents", "sandbox", "network-policy", "openshell", "least-privilege"],
+  "license": "Apache-2.0",
+  "privacy_policies": ["https://trustabl.ai/privacy/"],
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}

@@ -50,3 +50,10 @@ jobs:
           SMOKE_SCAN: "1"
           GITHUB_TOKEN: ${{ github.token }}
         run: node test/smoke.mjs
+
+      # The release also ships the server as an MCP Bundle; a manifest that
+      # fails validation would only surface at release time otherwise.
+      - name: MCP Bundle manifest validates and packs
+        run: |
+          npx -y @anthropic-ai/mcpb@2.1.2 validate manifest.json
+          npx -y @anthropic-ai/mcpb@2.1.2 pack . "$RUNNER_TEMP/check.mcpb"
