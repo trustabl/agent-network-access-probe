@@ -508,10 +508,14 @@ func printBanner(sourcePath string, entrypoints []string, runner, baseImage, llm
 		}
 		return fmt.Sprintf("  %-14s %s\n", label, styleHeader.Render(val))
 	}
+	model := llmModel
+	if model == "" {
+		model = "none (fixes skipped)"
+	}
 	kvLines := kv("Source:", sourcePath) +
 		kv("Entrypoints:", eps) +
 		kv("Runner:", runner+" · "+img) +
-		kv("Model:", llmModel)
+		kv("Model:", model)
 
 	// Height(n) sets the content area; Padding(1,…) adds 2 rendered rows on top.
 	// lipgloss.Height counts \n chars (one less than visible lines), so using the
@@ -818,6 +822,21 @@ func runPostScan(p postScanParams) error {
 	totalCandidates := len(allCandidates)
 	if totalCandidates == 0 {
 		fmt.Println("No issues found. Nothing to fix.")
+		return nil
+	}
+
+	// Without --model, the policy, profile, findings and attestation above are
+	// the whole result: fix generation is the only step that needs a model.
+	// A caller that applies fixes itself reads the fix hints from
+	// probe.findings.json.
+	if llmModel == "" {
+		if outputFmt == "json" {
+			fmt.Println("[]")
+		} else {
+			fmt.Fprintf(os.Stderr, "\n%s\n", styleDim.Render(fmt.Sprintf(
+				"Found %d candidate(s). No --model given, so no fixes were generated. Fix hints are in %s/probe.findings.json",
+				totalCandidates, sourcePath)))
+		}
 		return nil
 	}
 
@@ -1549,11 +1568,10 @@ After every scan, three files are always written to the source directory:
 					}
 				}
 			}
-			if llmModel == "" {
-				return fmt.Errorf("--model is required (e.g. --model gpt-4o, --model qwen2.5-coder:32b)")
-			}
+			// --model is optional: without it every report is still written and
+			// only fix generation is skipped (see runPostScan).
 			// Auto-detect endpoint URL from model name; require --llm-url for unknown models.
-			if llmURL == "" {
+			if llmModel != "" && llmURL == "" {
 				switch {
 				case strings.HasPrefix(llmModel, "gpt-") || strings.HasPrefix(llmModel, "o1") || strings.HasPrefix(llmModel, "o3"):
 					llmURL = "https://api.openai.com/v1"
@@ -2036,7 +2054,7 @@ After every scan, three files are always written to the source directory:
 	fixCmd.Flags().StringVar(&outputDir, "output-dir", "", "Directory to write policy/attestation/session files into for a --class run (default: the class file's own directory)")
 	fixCmd.Flags().StringVar(&baseImage, "base-image", "", "Sandbox base image for --runner openshell or docker (default: auto-detected from entrypoint extension)")
 	fixCmd.Flags().StringVar(&llmURL, "llm-url", "", "OpenAI-compatible LLM base URL (auto-detected from model name for gpt-* and claude-* models; required for other models)")
-	fixCmd.Flags().StringVar(&llmModel, "model", "", "Model name to use (e.g. gpt-4o, claude-3-5-sonnet-20241022, qwen2.5-coder:32b)")
+	fixCmd.Flags().StringVar(&llmModel, "model", "", "Model name to use (e.g. gpt-4o, claude-3-5-sonnet-20241022, qwen2.5-coder:32b); omit to skip fix generation, all reports are still written")
 	fixCmd.Flags().StringVar(&llmAPIKey, "api-key", "", "API key (defaults to OPENAI_API_KEY / ANTHROPIC_API_KEY / LLM_API_KEY env vars)")
 	fixCmd.Flags().DurationVar(&llmTimeout, "llm-timeout", llm.DefaultTimeout, "Per-request LLM timeout (increase for slow local models, e.g. --llm-timeout 10m)")
 	fixCmd.Flags().StringVar(&outputFmt, "output", "text", "Output format: text or json")
