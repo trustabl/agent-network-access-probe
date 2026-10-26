@@ -1,0 +1,23 @@
+{
+  "name": "trustabl-probe-mcp",
+  "version": "0.0.0",
+  "description": "MCP server for Trustabl Probe: drafts a network allow list for an agent tool and runs it in a sandbox to catch runtime problems",
+  "type": "module",
+  "bin": {
+    "trustabl-probe-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trustabl/agent-network-access-probe.git",
+    "directory": "mcp"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

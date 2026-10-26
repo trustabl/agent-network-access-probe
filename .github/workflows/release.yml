@@ -48,9 +48,38 @@ jobs:
           HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.TAP_PAT }}
           SCOOP_BUCKET_GITHUB_TOKEN: ${{ secrets.TAP_PAT }}
 
+      # The MCP server (mcp/) ships with each release as its own file, so its
+      # installs are counted apart from the binaries. Its version is set to the
+      # tag, which makes it run this same release's binary, and the smoke test
+      # scans with the binaries goreleaser just published.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Pack the MCP server
+        working-directory: mcp
+        env:
+          SMOKE_SCAN: "1"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          (cd server && npm ci && npm run build)
+          git diff --exit-code -- dist/index.js
+          npm version "${GITHUB_REF_NAME#v}" --no-git-tag-version
+          node test/smoke.mjs
+          cp ../LICENSE .
+          npm pack
+          f=$(ls trustabl-probe-mcp-*.tgz)
+          sha256sum "$f" > "$f.sha256"
+
+      - name: Attach the MCP server to the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload "$GITHUB_REF_NAME" mcp/trustabl-probe-mcp-*.tgz mcp/trustabl-probe-mcp-*.tgz.sha256
+
       - uses: actions/attest-build-provenance@v2
         with:
           subject-path: |
             dist/*.tar.gz
             dist/*.zip
             dist/checksums.txt
+            mcp/trustabl-probe-mcp-*.tgz

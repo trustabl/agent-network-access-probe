@@ -24,3 +24,9 @@ autofix-policy.yaml
 autofix-session.json
 autofix-session.patch
 dist/
+
+# MCP server: the bundle in mcp/dist is committed (installs run it), so it is
+# exempt from the dist/ rule above
+!mcp/dist/
+mcp/server/node_modules/
+mcp/*.tgz

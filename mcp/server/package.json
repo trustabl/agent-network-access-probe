@@ -1,0 +1,23 @@
+{
+  "name": "trustabl-probe-mcp-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Source of the Trustabl Probe MCP server; bundled to ../dist/index.js",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "esbuild index.js --bundle --platform=node --target=node18 --format=esm --outfile=../dist/index.js",
+    "smoke": "node ../test/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

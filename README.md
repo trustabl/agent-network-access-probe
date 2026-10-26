@@ -78,6 +78,12 @@ sudo mv autofix /usr/local/bin/
 autofix version
 ```
 
+### Or use it from your coding agent (MCP)
+
+Probe also runs as an MCP server, so a coding agent (Cursor, Claude Code, Claude
+Desktop) can check what Probe needs, install it, and scan a tool, then apply the
+fix hints itself. No model key is needed. See [mcp/README.md](mcp/README.md).
+
 ---
 
 ## Commands
