@@ -8,6 +8,47 @@ Runs your agent tool in an isolated OpenShell sandbox, observes the network dest
 
 > **Language support:** Static analysis is supported for Python, Go, JavaScript/TypeScript, Ruby, and Shell. Sandbox execution is available for all languages.
 
+---
+
+<a id="trustabl-partners"></a>
+<h2 align="center">Trustabl partners — install from the catalogue you already use</h2>
+<p align="center">
+  <sub>One network-access probe, four front doors.</sub>
+</p>
+
+<table align="center">
+  <tr>
+    <td align="center" width="300">
+      <a href="https://registry.modelcontextprotocol.io/?q=agent-network-access-probe"><b>MCP Registry</b></a><br>
+      <sub>Scan from any<br>MCP-aware client</sub>
+    </td>
+    <td align="center" width="300">
+      <a href="https://github.com/trustabl/agent-network-access-probe/releases/latest"><b>Claude Desktop</b></a><br>
+      <sub>One-click install from<br>the .mcpb bundle</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="mcp/README.md#install"><b>Claude Code</b></a> &middot;
+      <a href="mcp/README.md#install"><b>Cursor</b></a><br>
+      <sub>Your coding agent checks,<br>installs and runs Probe</sub>
+    </td>
+    <td align="center">
+      <a href="#3-install-autofix"><b>CLI</b></a><br>
+      <sub>Homebrew, Scoop<br>or a binary</sub>
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <sub>
+    Every one of these installs the same Probe and runs it on your own machine.<br>
+    Scanning agent code instead? <a href="https://github.com/trustabl/agent-reliability-analyzer#trustabl-partners">Agent Reliability Analyzer</a> has ten more front doors.
+  </sub>
+</p>
+
+---
+
 ## How It Works
 
 1. Your tool is uploaded to a sandboxed OpenShell environment and executed
