@@ -36677,7 +36677,7 @@ var setting = (value) => {
   return v && !/^\$\{[^}]*\}$/.test(v) ? v : void 0;
 };
 function ghHeaders() {
-  const h = { "User-Agent": "trustabl-probe-mcp" };
+  const h = { "User-Agent": "trustabl-agent-network-access-probe" };
   const token = setting(process.env.GITHUB_TOKEN);
   if (token) h.Authorization = `Bearer ${token}`;
   return h;
@@ -36958,7 +36958,7 @@ function stepsList(steps) {
     return [head, ...extra].join("\n");
   }).join("\n");
 }
-var server = new McpServer({ name: "trustabl-probe", version: releaseVersion()?.slice(1) ?? "dev" });
+var server = new McpServer({ name: "trustabl-agent-network-access-probe", version: releaseVersion()?.slice(1) ?? "dev" });
 server.registerTool(
   "probe_check_setup",
   {

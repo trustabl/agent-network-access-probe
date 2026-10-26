@@ -13,7 +13,7 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/trustabl/agent-network-access-probe/releases/download/v0.0.0/trustabl-probe-mcp-0.0.0.mcpb",
+      "identifier": "https://github.com/trustabl/agent-network-access-probe/releases/download/v0.0.0/trustabl-agent-network-access-probe-0.0.0.mcpb",
       "version": "0.0.0",
       "fileSha256": "0000000000000000000000000000000000000000000000000000000000000000",
       "transport": {
