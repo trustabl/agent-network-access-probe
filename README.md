@@ -28,7 +28,7 @@ Sandbox results are cached per tool under `os.UserCacheDir()/trustabl-probe/resu
 - A sandbox runner for `--sandbox` execution — pick one with `--runner`:
   - `docker` (default-friendly, no separate install beyond Docker itself) — [Docker Desktop or Docker Engine](https://docs.docker.com/get-docker/), daemon running. No OpenShell required.
   - `openshell` (default `--runner`) — [OpenShell](https://build.nvidia.com/openshell) installed, with `openshell gateway start` running. Also requires Python 3.8+ on the host machine, for dependency wheel downloads.
-- Access to an OpenAI-compatible LLM endpoint (OpenAI, Anthropic, Ollama, LiteLLM, LM Studio, etc.)
+- Access to an OpenAI-compatible LLM endpoint (OpenAI, Anthropic, Ollama, LiteLLM, LM Studio, etc.), only for generated fixes. Without `--model`, Probe still writes the policy, profile, findings and attestation.
 
 ## Setup
 
@@ -45,7 +45,7 @@ openshell gateway start   # keep running in a separate terminal
 openshell sandbox list    # verify CLI is on PATH
 ```
 
-### 2. Configure an LLM
+### 2. Configure an LLM (optional, only for generated fixes)
 
 **Local (Ollama):**
 ```bash
@@ -96,7 +96,7 @@ autofix fix --source ./my-tool --existing-policy ./policy.yaml --model claude-3-
 |---|---|---|
 | `--source` | required | Path to the tool directory |
 | `--entrypoint` | auto-detected | Entry point script(s) — can repeat for multi-file scanning |
-| `--model` | required | Model name. Cloud: `gpt-4o`, `claude-3-5-sonnet-20241022`. Local: `qwen2.5-coder:32b` (recommended) |
+| `--model` | — | Model name. Cloud: `gpt-4o`, `claude-3-5-sonnet-20241022`. Local: `qwen2.5-coder:32b` (recommended). Omit it to skip fix generation: the policy, profile, findings and attestation are still written, and `--output json` prints `[]`. |
 | `--llm-url` | auto-detected | OpenAI-compatible base URL. Auto-detected for `gpt-*` and `claude-*`. Required for all other models. |
 | `--api-key` | env var | API key — defaults to `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` / `LLM_API_KEY` |
 | `--llm-timeout` | `5m` | Per-request LLM timeout (increase for slow local models) |
