@@ -71,10 +71,25 @@ jobs:
           f=$(ls trustabl-probe-mcp-*.tgz)
           sha256sum "$f" > "$f.sha256"
 
+          # The same server as an MCP Bundle, for Claude Desktop, the MCP
+          # Registry and Smithery. .mcpbignore keeps it to the runtime files.
+          v="${GITHUB_REF_NAME#v}"
+          node -e "const fs=require('fs');const m=JSON.parse(fs.readFileSync('manifest.json'));m.version=process.argv[1];fs.writeFileSync('manifest.json',JSON.stringify(m,null,2)+'\n')" "$v"
+          b="trustabl-probe-mcp-$v.mcpb"
+          npx -y @anthropic-ai/mcpb@2.1.2 pack . "$b"
+          sha256sum "$b" > "$b.sha256"
+
+          # The MCP Registry record for this release, ready for mcp-publisher.
+          node -e "const fs=require('fs');const [v,sha]=process.argv.slice(1);const s=JSON.parse(fs.readFileSync('server.json'));s.version=v;const p=s.packages[0];p.version=v;p.identifier='https://github.com/trustabl/agent-network-access-probe/releases/download/v'+v+'/trustabl-probe-mcp-'+v+'.mcpb';p.fileSha256=sha;fs.writeFileSync('server.json',JSON.stringify(s,null,2)+'\n')" "$v" "$(cut -d' ' -f1 "$b.sha256")"
+
       - name: Attach the MCP server to the release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload "$GITHUB_REF_NAME" mcp/trustabl-probe-mcp-*.tgz mcp/trustabl-probe-mcp-*.tgz.sha256
+        run: |
+          gh release upload "$GITHUB_REF_NAME" \
+            mcp/trustabl-probe-mcp-*.tgz mcp/trustabl-probe-mcp-*.tgz.sha256 \
+            mcp/trustabl-probe-mcp-*.mcpb mcp/trustabl-probe-mcp-*.mcpb.sha256 \
+            mcp/server.json
 
       - uses: actions/attest-build-provenance@v2
         with:
@@ -83,3 +98,4 @@ jobs:
             dist/*.zip
             dist/checksums.txt
             mcp/trustabl-probe-mcp-*.tgz
+            mcp/trustabl-probe-mcp-*.mcpb

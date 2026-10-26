@@ -1,0 +1,8 @@
+# What goes into the .mcpb bundle: manifest.json, package.json (the server
+# reads its version from it), dist/, icon.png, README.md and LICENSE.
+server/
+test/
+*.tgz
+*.sha256
+*.mcpb
+server.json

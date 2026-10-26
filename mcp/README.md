@@ -56,8 +56,9 @@ release.
 claude mcp add trustabl-probe -- npx -y https://github.com/trustabl/agent-network-access-probe/releases/download/v0.2.4/trustabl-probe-mcp-0.2.4.tgz
 ```
 
-**Claude Desktop** (`claude_desktop_config.json`): the same `command` and `args`
-as the Cursor example, under `mcpServers`.
+**Claude Desktop:** download `trustabl-probe-mcp-<version>.mcpb` from the release
+and open it to install. Or use the same `command` and `args` as the Cursor example
+under `mcpServers` in `claude_desktop_config.json`.
 
 Then ask your agent to run `probe_check_setup`.
 
@@ -75,14 +76,23 @@ Then ask your agent to run `probe_check_setup`.
   may need a restart on Windows, and needs a paid subscription for larger
   companies.
 
-## Privacy
+## Privacy Policy
 
-Everything runs on your machine. The scanned code is not sent anywhere: there is
-no model call, and attestation signing is turned off, so nothing goes to a
-transparency log. The only network access is to GitHub (to find and download the
-Probe release), Docker Hub (for the images) and, when a Python tool declares
-dependencies, PyPI to install them before the sandbox run. The tool under test
-itself runs with its network blocked.
+Trustabl's privacy policy: https://trustabl.ai/privacy/
+
+What this server does with your data:
+
+- **Collection:** none. It sends no telemetry and makes no model call.
+- **Your code:** it is read and analyzed on your machine and never uploaded.
+  Attestation signing is turned off, so nothing goes to a transparency log.
+- **Network access:** only GitHub (to download the Probe release), Docker Hub
+  (for the sandbox images) and, when a Python tool declares dependencies, PyPI to
+  install them before the sandbox run. The tool under test runs with its network
+  blocked.
+- **Storage:** the Probe binary is cached in `~/.trustabl-probe/`, and the four
+  report files are written into the scanned directory. Delete either at any time.
+- **Third parties:** nothing is shared with Trustabl or anyone else.
+- **Contact:** https://github.com/trustabl/agent-network-access-probe/issues
 
 ## Settings
 
