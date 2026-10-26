@@ -6,3 +6,4 @@ test/
 *.sha256
 *.mcpb
 server.json
+plugin/
