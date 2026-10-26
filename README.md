@@ -1,5 +1,7 @@
 # Probe
 
+<a href="https://github.com/trustabl/agent-network-access-probe/releases"><img src="https://img.shields.io/github/downloads/trustabl/agent-network-access-probe/total?label=downloads&color=2ea043" alt="Total downloads"></a>
+
 > Public product: **Trustabl Probe**
 
 Runs your agent tool in an isolated OpenShell sandbox, observes the network destinations it actually reaches, and generates a least-privilege OpenShell `network_policies` draft from that evidence — no hand-written allow list required. Static analysis also flags hardcoded credentials, missing timeouts, and other reliability issues, with AI-generated fixes for each, reviewed one by one. Your source code never leaves your environment.
