@@ -32,7 +32,7 @@ export const setting = (value) => {
 };
 
 function ghHeaders() {
-  const h = { "User-Agent": "trustabl-agent-network-access-probe" };
+  const h = { "User-Agent": "agent-network-access-probe" };
   const token = setting(process.env.GITHUB_TOKEN);
   if (token) h.Authorization = `Bearer ${token}`;
   return h;

@@ -59,7 +59,7 @@ const init = await call("initialize", {
   capabilities: {},
   clientInfo: { name: "smoke", version: "0" },
 });
-check(init.serverInfo?.name === "trustabl-agent-network-access-probe", "initialize");
+check(init.serverInfo?.name === "agent-network-access-probe", "initialize");
 child.stdin.write(`${JSON.stringify({ jsonrpc: "2.0", method: "notifications/initialized" })}\n`);
 
 const { tools } = await call("tools/list", {});

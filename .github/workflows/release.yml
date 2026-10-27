@@ -85,7 +85,7 @@ jobs:
           # The MCP Registry record for this release, ready for mcp-publisher.
           node -e "const fs=require('fs');const [v,sha]=process.argv.slice(1);const s=JSON.parse(fs.readFileSync('server.json'));s.version=v;const p=s.packages[0];p.version=v;p.identifier='https://github.com/trustabl/agent-network-access-probe/releases/download/v'+v+'/trustabl-agent-network-access-probe-'+v+'.mcpb';p.fileSha256=sha;fs.writeFileSync('server.json',JSON.stringify(s,null,2)+'\n')" "$v" "$(cut -d' ' -f1 "$b.sha256")"
 
-      # With npm, `npx -y trustabl-agent-network-access-probe` always installs the latest
+      # With npm, `npx -y @trustabl/agent-network-access-probe` always installs the latest
       # release, and the registry record gains an npm package that every MCP
       # client can install. package.json's mcpName proves registry ownership.
       - name: Publish the MCP server to npm
@@ -96,7 +96,7 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
           npm publish --provenance --access public
-          node -e "const fs=require('fs');const s=JSON.parse(fs.readFileSync('server.json'));s.packages.unshift({registryType:'npm',identifier:'trustabl-agent-network-access-probe',version:s.version,transport:{type:'stdio'}});fs.writeFileSync('server.json',JSON.stringify(s,null,2)+'\n')"
+          node -e "const fs=require('fs');const s=JSON.parse(fs.readFileSync('server.json'));s.packages.unshift({registryType:'npm',identifier:'@trustabl/agent-network-access-probe',version:s.version,transport:{type:'stdio'}});fs.writeFileSync('server.json',JSON.stringify(s,null,2)+'\n')"
 
       - name: Attach the MCP server to the release
         env:

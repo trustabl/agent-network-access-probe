@@ -33,7 +33,7 @@ Python and Node. Shell scripts are always analyzed statically only.
 
 Requires Node.js 18 or later. Docker is optional and enables the sandbox.
 
-The server is the npm package `trustabl-agent-network-access-probe`, and every
+The server is the npm package `@trustabl/agent-network-access-probe`, and every
 [Probe release](https://github.com/trustabl/agent-network-access-probe/releases)
 also attaches it as `trustabl-agent-network-access-probe-<version>.tgz` and
 `.mcpb`.
@@ -43,9 +43,9 @@ also attaches it as `trustabl-agent-network-access-probe-<version>.tgz` and
 ```json
 {
   "mcpServers": {
-    "trustabl-agent-network-access-probe": {
+    "agent-network-access-probe": {
       "command": "npx",
-      "args": ["-y", "trustabl-agent-network-access-probe"]
+      "args": ["-y", "@trustabl/agent-network-access-probe"]
     }
   }
 }
@@ -54,7 +54,7 @@ also attaches it as `trustabl-agent-network-access-probe-<version>.tgz` and
 **Claude Code:**
 
 ```bash
-claude mcp add trustabl-agent-network-access-probe -- npx -y trustabl-agent-network-access-probe
+claude mcp add agent-network-access-probe -- npx -y @trustabl/agent-network-access-probe
 ```
 
 **Claude Desktop:** download `trustabl-agent-network-access-probe-<version>.mcpb`

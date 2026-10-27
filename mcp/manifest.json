@@ -1,6 +1,6 @@
 {
   "manifest_version": "0.3",
-  "name": "trustabl-agent-network-access-probe",
+  "name": "agent-network-access-probe",
   "display_name": "Trustabl Probe",
   "version": "0.0.0",
   "description": "Drafts a network allow list for an agent tool and runs it in a network-blocked sandbox to catch runtime problems.",
