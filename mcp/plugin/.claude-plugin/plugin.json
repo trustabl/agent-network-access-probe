@@ -12,6 +12,6 @@
   "icon": "./assets/logo.png",
   "documentationUrl": "https://github.com/trustabl/agent-network-access-probe/tree/main/mcp#readme",
   "supportUrl": "https://github.com/trustabl/agent-network-access-probe/issues",
-  "privacyPolicyUrl": "https://trustabl.ai/privacy/",
+  "privacyPolicyUrl": "https://github.com/trustabl/agent-network-access-probe/blob/main/mcp/plugin/README.md#privacy",
   "termsOfServiceUrl": "https://trustabl.ai/terms/"
 }
