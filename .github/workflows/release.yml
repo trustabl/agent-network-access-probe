@@ -59,6 +59,16 @@ jobs:
         with:
           node-version: "20"
 
+      # The Claude Directory requires the plugin to launch an exact npm version,
+      # so mcp/plugin pins one. It can only point at a version npm already has,
+      # so bump it in a follow-up PR once this release is published.
+      - name: Check the plugin's pinned version
+        run: |
+          v="${GITHUB_REF_NAME#v}"
+          for f in mcp/plugin/.mcp.json mcp/plugin/mcp.json; do
+            grep -q "@trustabl/agent-network-access-probe@$v\"" "$f" || echo "::warning file=$f::pins a different version than $GITHUB_REF_NAME; after this release, update it to @$v"
+          done
+
       - name: Pack the MCP server
         working-directory: mcp
         env:

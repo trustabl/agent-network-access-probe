@@ -1,7 +1,7 @@
 {
   "name": "agent-network-access-probe",
   "description": "Drafts a network allow list for agent tools and runs them in a network-blocked sandbox to catch runtime problems. Your agent applies the fix hints, so no model key is needed. Docker is optional and enables the sandbox.",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": { "name": "Trustabl" },
   "logo": "assets/logo.png",
   "homepage": "https://trustabl.ai",

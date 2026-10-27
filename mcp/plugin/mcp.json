@@ -2,7 +2,7 @@
   "mcpServers": {
     "agent-network-access-probe": {
       "command": "npx",
-      "args": ["-y", "@trustabl/agent-network-access-probe"]
+      "args": ["-y", "@trustabl/agent-network-access-probe@0.5.0"]
     }
   }
 }
