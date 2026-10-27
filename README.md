@@ -31,7 +31,7 @@ Runs your agent tool in an isolated OpenShell sandbox, observes the network dest
   <tr>
     <td align="center">
       <a href="mcp/README.md#install"><b>Claude Code</b></a> &middot;
-      <a href="mcp/README.md#install"><b>Cursor</b></a><br>
+      <a href="https://cursor.directory/plugins/agent-network-access-probe"><b>Cursor</b></a><br>
       <sub>Your coding agent checks,<br>installs and runs Probe</sub>
     </td>
     <td align="center">
