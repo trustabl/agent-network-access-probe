@@ -93,8 +93,10 @@ What this server does with your data:
   (for the sandbox images) and, when a Python tool declares dependencies, PyPI to
   install them before the sandbox run. The tool under test runs with its network
   blocked.
-- **Storage:** the Probe binary is cached in `~/.trustabl-probe/`, and the four
-  report files are written into the scanned directory. Delete either at any time.
+- **Storage:** the Probe binary is cached in `~/.trustabl-probe/`, sandbox
+  results are cached in your user cache folder under `trustabl-probe/results`,
+  and the four report files are written into the scanned directory. Delete any
+  of them at any time.
 - **Third parties:** nothing is shared with Trustabl or anyone else.
 - **Contact:** https://github.com/trustabl/agent-network-access-probe/issues
 
