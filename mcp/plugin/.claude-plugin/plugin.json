@@ -1,5 +1,5 @@
 {
-  "name": "trustabl-agent-network-access-probe",
+  "name": "agent-network-access-probe",
   "version": "0.4.0",
   "description": "Drafts a network allow list for agent tools and runs them in a network-blocked sandbox to catch runtime problems. Your agent applies the fix hints, so no model key is needed. Docker is optional and enables the sandbox.",
   "homepage": "https://github.com/trustabl/agent-network-access-probe/tree/main/mcp",

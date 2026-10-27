@@ -20,7 +20,7 @@ Runs your agent tool in an isolated OpenShell sandbox, observes the network dest
   <tr>
     <td align="center" width="300">
       <a href="https://registry.modelcontextprotocol.io/?q=agent-network-access-probe"><b>MCP Registry</b></a> &middot;
-      <a href="https://www.npmjs.com/package/trustabl-agent-network-access-probe"><b>npm</b></a><br>
+      <a href="https://www.npmjs.com/package/@trustabl/agent-network-access-probe"><b>npm</b></a><br>
       <sub>Scan from any<br>MCP-aware client</sub>
     </td>
     <td align="center" width="300">
