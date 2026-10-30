@@ -1,6 +1,6 @@
 # Probe
 
-<a href="https://github.com/trustabl/agent-network-access-probe/releases"><img src="https://img.shields.io/github/downloads/trustabl/agent-network-access-probe/total?label=downloads&color=2ea043" alt="Total downloads"></a>
+<!-- <a href="https://github.com/trustabl/agent-network-access-probe/releases"><img src="https://img.shields.io/github/downloads/trustabl/agent-network-access-probe/total?label=downloads&color=2ea043" alt="Total downloads"></a> -->
 
 > Public product: **Trustabl Probe**
 
