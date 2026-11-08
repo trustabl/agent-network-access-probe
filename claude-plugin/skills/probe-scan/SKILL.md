@@ -18,15 +18,34 @@ call and needs no API key: you apply the fix hints.
 
 ## Run it
 
-The `SessionStart` hook installs the pinned Probe binary (checksum-verified) and
-exports it as `$PROBE_BIN`. If it is empty, the install failed: say so, show the
-hook's `[probe]` message, and stop. Do not use an `autofix` found on `PATH`.
+1. **Get Probe.** The plugin ships no scripts. Run this block with the Bash tool: it downloads the pinned release from GitHub,
+checks it against the release's `checksums.txt` (a mismatch installs nothing), keeps it in `~/.trustabl-probe/`, and
+prints `PROBE_BIN=<path>`. Later runs only check the version, so run it at the start of each session that uses
+Probe. Tell the user what it downloads the first time. Do not use an `autofix` found on `PATH`: the name is too generic to trust as Probe.
 
-1. **Pick the sandbox.** Run `docker info --format '{{.ServerVersion}}'`. If it
+```bash
+V=0.5.0; D="$HOME/.trustabl-probe/v$V"
+case "$(uname -s)" in MINGW*|MSYS*|CYGWIN*) OS=windows; EXT=zip; EXE=autofix.exe ;; Darwin) OS=darwin; EXT=tar.gz; EXE=autofix ;; *) OS=linux; EXT=tar.gz; EXE=autofix ;; esac
+case "$(uname -m)" in arm64|aarch64) ARCH=arm64 ;; *) ARCH=amd64 ;; esac; [ "$OS" = windows ] && ARCH=amd64
+PROBE_BIN="$D/$EXE"
+if ! "$PROBE_BIN" version 2>/dev/null | head -n1 | grep -q "$V\$"; then
+  A="autofix_${V}_${OS}_${ARCH}.$EXT"; U="https://github.com/trustabl/agent-network-access-probe/releases/download/v$V"; T="$(mktemp -d)"
+  curl -fsSL "$U/$A" -o "$T/$A" && curl -fsSL "$U/checksums.txt" -o "$T/checksums.txt" &&
+  SUM=sha256sum; command -v sha256sum >/dev/null || SUM="shasum -a 256"
+  (cd "$T" && L="$(grep " $A\$" checksums.txt)" && [ -n "$L" ] && echo "$L" | $SUM -c -) &&
+  mkdir -p "$D" && if [ "$EXT" = zip ]; then unzip -oq "$T/$A" -d "$D"; else tar -xzf "$T/$A" -C "$D"; fi &&
+  chmod +x "$PROBE_BIN"; rm -rf "$T"
+fi
+if "$PROBE_BIN" version 2>/dev/null | head -n1 | grep -q "$V\$"; then echo "PROBE_BIN=$PROBE_BIN"; else echo "install failed: see the message above"; fi
+```
+
+Shell state does not carry between Bash calls: start each later command with `PROBE_BIN="<the printed path>";`.
+If the block prints `install failed`, show the user the message above it and stop.
+2. **Pick the sandbox.** Run `docker info --format '{{.ServerVersion}}'`. If it
    prints a version, Docker is running and the scan can use the sandbox. If not,
    scan static only and tell the user that starting Docker enables the sandbox.
    Never install or start Docker yourself; Docker Desktop needs admin rights.
-2. **Scan** the directory the user named, else the current one:
+3. **Scan** the directory the user named, else the current one:
    ```bash
    "$PROBE_BIN" fix --source <dir> --no-sign --output json                                  # static only
    "$PROBE_BIN" fix --source <dir> --no-sign --output json --sandbox --runner docker        # with the sandbox
@@ -36,7 +55,7 @@ hook's `[probe]` message, and stop. Do not use an `autofix` found on `PATH`.
    runs tools that look destructive (network writes, deletes, payments) in the
    sandbox, ideally with staging credentials. The first sandbox run also pulls
    the images (`python:3-slim`, `node:20-slim`, `golang:1.25-alpine`, `ruby:3-slim`).
-3. **Read the reports** Probe writes into the scanned directory:
+4. **Read the reports** Probe writes into the scanned directory:
    - `autofix-attestation.json`: `production_readiness_score` (0-100),
      `network_calls` (the allow list as host and port), `languages_detected`.
    - `probe.findings.json`: `findings`, each with `severity`, `title`, `file`,
