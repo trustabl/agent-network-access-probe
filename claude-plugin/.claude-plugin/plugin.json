@@ -1,7 +1,7 @@
 {
   "name": "agent-network-access-probe",
   "displayName": "agent-network-access-probe",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Drafts a network allow list for agent tools and runs them in a network-blocked sandbox. Your agent applies the fix hints, so no model key is needed.",
   "homepage": "https://trustabl.ai",
   "repository": "https://github.com/trustabl/agent-network-access-probe",

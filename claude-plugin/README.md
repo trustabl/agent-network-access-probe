@@ -17,10 +17,9 @@ an agent tool; the `probe-scan` skill takes it from there.
 
 ## How it runs
 
-The plugin has no MCP server. At session start it installs the pinned Probe
-binary into the plugin's own data folder, after checking it against the release
-`checksums.txt` (a mismatch installs nothing), and Claude runs it with the Bash
-tool. It works on macOS, Linux and Windows (Git Bash). For Cursor and other MCP
+The plugin has no MCP server, hooks or scripts. On first use, Claude runs a short install block from the
+skill that downloads the pinned Probe binary into `~/.trustabl-probe/`, after checking it against the release
+`checksums.txt` (a mismatch installs nothing), and then runs it with the Bash tool. It works on macOS, Linux and Windows (Git Bash). For Cursor and other MCP
 clients, use the MCP server instead: [mcp/README.md](../mcp/README.md).
 
 ## Requirements
@@ -30,7 +29,7 @@ it, scans run static analysis only. The plugin never installs or starts Docker.
 
 ## What it changes on your machine
 
-- Installs the Probe binary into the plugin's data folder.
+- Installs the Probe binary into `~/.trustabl-probe/` (shared with the Probe MCP server).
 - Pulls the sandbox images (`python:3-slim`, `node:20-slim`, `golang:1.25-alpine`,
   `ruby:3-slim`) on the first sandbox run.
 - Writes `network_policies.draft.yaml`, `probe.findings.json`, `probe.profile.json`
@@ -46,7 +45,7 @@ it, scans run static analysis only. The plugin never installs or starts Docker.
   the sandbox images) and, when a Python tool declares dependencies, PyPI to
   install them before the sandbox run. The tool under test runs with its network
   blocked.
-- **Storage:** the Probe binary in the plugin's data folder, sandbox results in
+- **Storage:** the Probe binary in `~/.trustabl-probe/`, sandbox results in
   your user cache folder under `trustabl-probe/results`, and the four report files
   in the scanned folder. Delete any of them at any time.
 - **Third parties:** nothing is shared with Trustabl or anyone else.
