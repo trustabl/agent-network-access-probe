@@ -1,0 +1,16 @@
+{
+  "name": "agent-network-access-probe",
+  "displayName": "agent-network-access-probe",
+  "version": "0.5.1",
+  "description": "Drafts a network allow list for agent tools and runs them in a network-blocked sandbox. Your agent applies the fix hints, so no model key is needed.",
+  "homepage": "https://trustabl.ai",
+  "repository": "https://github.com/trustabl/agent-network-access-probe",
+  "author": { "name": "Trustabl", "url": "https://trustabl.ai", "email": "eng@trustabl.ai" },
+  "license": "Apache-2.0",
+  "keywords": ["security", "agents", "sandbox", "network-policy", "openshell", "least-privilege"],
+  "icon": "./assets/logo.png",
+  "documentationUrl": "https://github.com/trustabl/agent-network-access-probe/tree/main/claude-plugin#readme",
+  "supportUrl": "https://github.com/trustabl/agent-network-access-probe/issues",
+  "privacyPolicyUrl": "https://github.com/trustabl/agent-network-access-probe/blob/main/claude-plugin/README.md#privacy",
+  "termsOfServiceUrl": "https://trustabl.ai/terms/"
+}
