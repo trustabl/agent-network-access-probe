@@ -68,6 +68,9 @@ jobs:
           for f in mcp/plugin/.mcp.json mcp/plugin/mcp.json; do
             grep -q "@trustabl/agent-network-access-probe@$v\"" "$f" || echo "::warning file=$f::pins a different version than $GITHUB_REF_NAME; after this release, update it to @$v"
           done
+          # The Claude Code plugin (no MCP server) installs the Probe binary itself.
+          f=claude-plugin/scripts/lib-probe.sh
+          grep -q "^TDL_VERSION=\"$v\"" "$f" || echo "::warning file=$f::pins a different Probe version than $GITHUB_REF_NAME; after this release, update TDL_VERSION to $v"
 
       - name: Pack the MCP server
         working-directory: mcp
