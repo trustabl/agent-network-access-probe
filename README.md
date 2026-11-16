@@ -50,7 +50,7 @@ Runs your agent tool in an isolated OpenShell sandbox, observes the network dest
 
 <p align="center">
   <a href="https://www.star-history.com/#trustabl/agent-network-access-probe&Date">
-    <img src="https://api.star-history.com/svg?repos=trustabl/agent-network-access-probe&type=Date" alt="GitHub stars over time for trustabl/agent-network-access-probe" width="600">
+    <img src="https://api.star-history.com/svg?repos=trustabl/agent-network-access-probe&type=Date" alt="GitHub stars over time for trustabl/agent-network-access-probe" width="800">
   </a>
 </p>
 
