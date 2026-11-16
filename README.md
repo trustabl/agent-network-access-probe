@@ -235,6 +235,12 @@ autofix version
 autofix license
 ```
 
+## Star history
+
+<a href="https://www.star-history.com/#trustabl/agent-network-access-probe&Date">
+  <img src="https://api.star-history.com/svg?repos=trustabl/agent-network-access-probe&type=Date" alt="GitHub stars over time for trustabl/agent-network-access-probe">
+</a>
+
 ---
 
 ## License
